@@ -1,3 +1,10 @@
+<docs>
+Countdown Component
+This component accepts a human readable "deadline" prop and displays a countdown to this date.
+I original created this to display a countdown to my 80th birthday, which coinsides with expected
+lifespan of the average American male.
+</docs>
+
 <template>
     <div class="card">
         <header class="card-header">
@@ -31,43 +38,43 @@
 <script>
 /* @flow */
 export default {
-  name: "countdown",
-  props: ["deadline"],
+  name: 'countdown',
+  props: ['deadline'],
   data() {
     return {
       now: Math.trunc(new Date().getTime() / 1000),
       date: null
-    };
+    }
   },
   mounted() {
-    this.date = Math.trunc(Date.parse(this.deadline) / 1000);
+    this.date = Math.trunc(Date.parse(this.deadline) / 1000)
     setInterval(() => {
-      this.now = Math.trunc(new Date().getTime() / 1000);
-    }, 1000);
+      this.now = Math.trunc(new Date().getTime() / 1000)
+    }, 1000)
   },
   computed: {
     seconds() {
-      return Math.trunc(this.date - this.now) % 60;
+      return Math.trunc(this.date - this.now) % 60
     },
     minutes() {
-      return Math.trunc((this.date - this.now) / 60) % 60;
+      return Math.trunc((this.date - this.now) / 60) % 60
     },
     hours() {
-      return Math.trunc((this.date - this.now) / 60 / 60) % 24;
+      return Math.trunc((this.date - this.now) / 60 / 60) % 24
     },
     days() {
-      return Math.trunc((this.date - this.now) / 60 / 60 / 24);
+      return Math.trunc((this.date - this.now) / 60 / 60 / 24)
     }
   },
   filters: {
     twoDigits: value => {
       if (value.toString().length <= 1) {
-        return "0" + value.toString();
+        return '0' + value.toString()
       }
-      return value.toString();
+      return value.toString()
     }
   }
-};
+}
 </script>
 <style lang="scss">
 .vue-countdown {

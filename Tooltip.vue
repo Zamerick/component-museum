@@ -1,3 +1,10 @@
+<docs>
+Tooltip Component
+This component is sub component of the Applicaton Progress Bar component, and is
+responsible for displaying the names of the tasks remaining to be completed in a
+given stage in the application progress. As the name suggests, its displayed as a tooltip
+when the user hovers over the icon for the current stage.
+</docs>
 <template>
     <transition name="bounce">
       <div v-show="show"
@@ -18,18 +25,18 @@
 
 <script>
 export default {
-  name: "tooltip",
-  props: ["show", "blocking", "last"],
+  name: 'tooltip',
+  props: ['show', 'blocking', 'last'],
   computed: {
     xPosition() {
       if (this.last) {
-        return { left: "0%" };
+        return { left: '0%' }
       } else {
-        return { right: "0%" };
+        return { right: '0%' }
       }
     }
   }
-};
+}
 </script>
 
 <style>

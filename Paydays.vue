@@ -1,3 +1,9 @@
+<docs>
+Paydays Component
+This component displays dates returned from a laravel api endpoint that calculates
+the days on which I get paid.
+</docs>
+
 <template>
     <div class="box">
       <h2>Pay Days</h2>
@@ -8,26 +14,25 @@
 </template>
 <script>
 /* @flow */
-import axios from "axios";
+import axios from 'axios'
 export default {
-  name: "paydays",
+  name: 'paydays',
   data() {
     return {
       paydays: []
-    };
+    }
   },
   mounted() {
     axios
-      .get("/api/paydays")
+      .get('/api/paydays')
       .then(response => {
-        this.paydays = response.data;
+        this.paydays = response.data
       })
       .catch(error => {
-        console.log(error);
-      });
+        console.log(error)
+      })
   }
-};
+}
 </script>
 <style lang="">
-
 </style>

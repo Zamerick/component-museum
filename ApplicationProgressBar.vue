@@ -1,3 +1,12 @@
+<docs>
+Application Progress Bar Component
+This component is a prototype for a feature request at work. Applicatons have multiple stages,
+with a series of tasks that must be completed before the user can progress to the next stage.
+This component provides visual feedback to the user about where they are, and the progress they
+are making in completing the overall application. This component uses builtin dummy data to demonstrate
+how it would function to end users. It also includes some buttons to change state,that would not be present in the finished component.
+</docs>
+
 <template>
   <div class="w-full mx-auto root" :style="this.backgroundImage" >
     <!-- Header Text -->
@@ -46,62 +55,62 @@
 </template>
 
 <script>
-import ProgressBar from "@/components/ProgressBar";
-import Tooltip from "@/components/Tooltip";
+import ProgressBar from '@/components/ProgressBar'
+import Tooltip from '@/components/Tooltip'
 export default {
-  name: "home",
+  name: 'home',
   components: {
     ProgressBar,
     Tooltip
   },
   computed: {
     currentStage() {
-      return this.stages[this.applicationStatus - 1];
+      return this.stages[this.applicationStatus - 1]
     },
     backgroundImage() {
       let imageString =
         "linear-gradient(rgba(20, 20, 20, 0.6), rgba(20, 20, 20, 0.6)), url('/images/" +
         this.currentStage.image +
-        "')";
+        "')"
       return {
         background: imageString,
-        height: "50%",
-        "background-position": "center",
-        "background-repeat": "no-repeat",
-        "background-size": "cover"
-      };
+        height: '50%',
+        'background-position': 'center',
+        'background-repeat': 'no-repeat',
+        'background-size': 'cover'
+      }
     }
   },
   methods: {
     isCompletedStage(index) {
-      return this.applicationStatus <= index;
+      return this.applicationStatus <= index
     },
     isLastStage(index) {
-      return index != this.stages.length - 1;
+      return index != this.stages.length - 1
     },
     isNextStage(index) {
-      return index == this.applicationStatus;
+      return index == this.applicationStatus
     },
 
     tense(index) {
       if (index < this.applicationStatus - 1) {
-        return "past";
+        return 'past'
       } else if (index == this.applicationStatus - 1) {
-        return "present";
+        return 'present'
       } else if (index > this.applicationStatus - 1) {
-        return "future";
+        return 'future'
       }
     },
     advanceStage() {
-      this.applicationStatus = this.applicationStatus + 1;
-      this.completedBlockingTasks = 0;
+      this.applicationStatus = this.applicationStatus + 1
+      this.completedBlockingTasks = 0
     },
     completeTask() {
-      this.completedBlockingTasks = this.completedBlockingTasks + 1;
+      this.completedBlockingTasks = this.completedBlockingTasks + 1
     },
     toggleShow(index) {
       if (this.isNextStage(index)) {
-        this.showToolTip = !this.showToolTip;
+        this.showToolTip = !this.showToolTip
       }
     }
   },
@@ -109,66 +118,66 @@ export default {
     return {
       stages: [
         {
-          name: "New",
-          image: "adventure-climb-climber-306531.jpg",
-          message: "Welcome!",
-          icon: "pencil-alt"
+          name: 'New',
+          image: 'adventure-climb-climber-306531.jpg',
+          message: 'Welcome!',
+          icon: 'pencil-alt'
         },
         {
-          name: "Submitted",
-          image: "asphalt-black-and-white-clouds-715221.jpg",
-          message: "Your Application has been submitted!",
-          icon: "envelope"
+          name: 'Submitted',
+          image: 'asphalt-black-and-white-clouds-715221.jpg',
+          message: 'Your Application has been submitted!',
+          icon: 'envelope'
         },
         {
-          name: "In-Review",
-          image: "balconies-beach-blue-water-1167021.jpg",
+          name: 'In-Review',
+          image: 'balconies-beach-blue-water-1167021.jpg',
           message:
             "We're reviewing your application. Someone will contact you soon!",
-          icon: "search"
+          icon: 'search'
         },
         {
-          name: "Accepted",
-          image: "beach-cliff-clouds-1168742.jpg",
-          message: "Congradulations, Your application has been approved!",
-          icon: "plane-departure"
+          name: 'Accepted',
+          image: 'beach-cliff-clouds-1168742.jpg',
+          message: 'Congradulations, Your application has been approved!',
+          icon: 'plane-departure'
         },
         {
-          name: "Confirmed",
-          image: "business-dark-evening-1164675.jpg",
+          name: 'Confirmed',
+          image: 'business-dark-evening-1164675.jpg',
           message: "You've been confirmed. Time to pack your bags!",
-          icon: "plane"
+          icon: 'plane'
         },
         {
-          name: "Arrived",
-          image: "camera-clouds-daylight-840666.jpg",
+          name: 'Arrived',
+          image: 'camera-clouds-daylight-840666.jpg',
           message: "You've Arrived! Let's get settled and start learning!",
-          icon: "plane-arrival"
+          icon: 'plane-arrival'
         },
         {
-          name: "Completed",
-          image: "landscape-mountains-nature-15382.jpg",
+          name: 'Completed',
+          image: 'landscape-mountains-nature-15382.jpg',
           message: "Yay! you've completed the program. You're Awesome!",
-          icon: "graduation-cap"
+          icon: 'graduation-cap'
         }
       ],
       blocking: [
-        "Passport",
-        "Academic Data",
-        "Transcript",
-        "Application Fee",
-        "Leo Dicaprio winning an oscar",
-        "something freezing over",
-        "World Peace"
+        'Passport',
+        'Academic Data',
+        'Transcript',
+        'Application Fee',
+        'Leo Dicaprio winning an oscar',
+        'something freezing over',
+        'World Peace'
       ],
       totalBlockingTasks: 7,
       completedBlockingTasks: 0,
       isCurrentStage: true,
       applicationStatus: 1,
       showToolTip: false
-    };
+    }
   }
-};
+}
 </script>
 <style>
 svg {
